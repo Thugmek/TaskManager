@@ -34,47 +34,23 @@ export default function TaskList() {
       });
   };
 
-  return (
-    <>
-      <Accordion>
-        {tasks.map((a) => {
-          console.log(a);
-          return (
-            <Task
-              data={a}
-              onDelete={() => {
-                deleteTask(a);
-              }}
-            />
-          );
-        })}
-      </Accordion>
-      <h1>Lorem</h1>
-      <h1>ipsum</h1>
-      <h1>donor</h1>
-      <h1>sit</h1>
-      <h1>amet</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-      <h1>...</h1>
-    </>
-  );
+  if (tasks.length > 0)
+    return (
+      <>
+        <Accordion>
+          {tasks.map((a) => {
+            return (
+              <Task
+                key={a._id}
+                data={a}
+                onDelete={() => {
+                  deleteTask(a);
+                }}
+              />
+            );
+          })}
+        </Accordion>
+      </>
+    );
+  else return <>loading...</>;
 }

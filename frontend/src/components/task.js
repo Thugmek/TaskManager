@@ -12,7 +12,9 @@ export default function Task(props) {
           <Button>Complete</Button>
           <Button onClick={props.onDelete}>Delete</Button>
         </div>
-        <div>{props.data.text}</div>
+        <div>
+          <pre>{props.data.description}</pre>
+        </div>
       </Accordion.Body>
     </Accordion.Item>
   );
