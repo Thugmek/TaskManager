@@ -2,33 +2,59 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function NewTask() {
+export default function EditTask() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [task, setTask] = useState({});
 
   const navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    console.log("fetching task...", params);
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ _id: params.id }),
+    };
+    fetch(
+      "http://" + window.location.hostname + ":3000/task/get",
+      requestOptions
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        setTask(json);
+        setName(json.name);
+        setDescription(json.description);
+        setDate(json.date);
+        setTime(json.time);
+      });
+  }, []);
 
   function submitToBE() {
-    let payload = { name, description, date, time };
+    let payload = { _id: task._id, name, description, date, time };
     console.log(payload);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     };
-    fetch("http://"+window.location.hostname+":3000/task/create", requestOptions).then((res) => {
+    fetch(
+      "http://" + window.location.hostname + ":3000/task/update",
+      requestOptions
+    ).then((res) => {
       navigate("/tasks");
     });
   }
 
   return (
     <>
-      <h1>New Task</h1>
+      <h1>Edit Task</h1>
       <Form>
         <Form.Group controlId="name" className="my-3">
           <Form.Label>Name</Form.Label>

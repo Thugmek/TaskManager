@@ -30,6 +30,7 @@ class Database {
   }
 
   get(collection, object, action) {
+    console.log("Get: ",object);
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("tasklist");
@@ -41,11 +42,13 @@ class Database {
     });
   }
 
-  update(collection, object, action) {
+  update(collection, querry, object, action) {
+    console.log("Update: ",object);
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("tasklist");
-      dbo.collection(collection).updateOne(object, function (err, res) {
+      delete object._id;
+      dbo.collection(collection).updateOne(querry, {$set: object}, function (err, res) {
         if (err) throw err;
         action(res);
         db.close();

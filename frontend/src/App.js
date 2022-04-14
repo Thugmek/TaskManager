@@ -9,6 +9,10 @@ import Menu from "./components/menu";
 import About from "./About";
 import Tasks from "./tasks";
 import NewTask from "./new-task";
+import EditTask from "./edit-task";
+import style from "./app.module.css";
+import DayPlan from "./day-plan";
+import { MdPerson } from "react-icons/md";
 
 function App() {
   return (
@@ -17,19 +21,20 @@ function App() {
         <Container fluid>
           <Row>
             <Col style={{ padding: "0" }}>
-              <Navbar bg="dark" variant="dark" style={{ height: "60px" }}>
-                <Navbar.Text>Header</Navbar.Text>
+              <Navbar
+                className="justify-content-center fs-3"
+                bg="dark"
+                variant="dark"
+                style={{ height: "60px" }}
+              >
+                <Navbar.Text>
+                  <MdPerson /> Header
+                </Navbar.Text>
               </Navbar>
             </Col>
           </Row>
           <Row>
-            <Col
-              xs={3}
-              style={{
-                backgroundColor: "silver",
-                minHeight: "calc(100vh - 60px)",
-              }}
-            >
+            <Col xs={12} sm={3} lg={2} className={style.leftMenu}>
               <Menu />
             </Col>
             <Col>
@@ -38,6 +43,8 @@ function App() {
                 <Route path="/tasks" element={<Tasks />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/newTask" element={<NewTask />} />
+                <Route path="/calendar" element={<DayPlan />} />
+                <Route path="/editTask/:id" element={<EditTask />} />
               </Routes>
             </Col>
           </Row>

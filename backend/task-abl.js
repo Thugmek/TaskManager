@@ -20,9 +20,29 @@ class TaskABL {
     }
   }
 
-  update(req, res) {}
+  update(req, res) {
+    console.log("opdate: ", req.body);
 
-  get(req, res) {}
+    let querry = {
+      _id: new this.mongo.ObjectId(req.body._id),
+    };
+
+    this.database.update("tasks", querry, req.body, (a) => {
+      res.send(a);
+      console.log("Database response: ", a);
+    });
+  }
+
+  get(req, res) {
+    console.log("Get task", req.body);
+    let querry = {
+      _id: new this.mongo.ObjectId(req.body._id),
+    };
+    this.database.get("tasks", querry, (a) => {
+      res.send(a);
+      console.log("Database get result: ", a);
+    });
+  }
 
   delete(req, res) {
     console.log(req.body);

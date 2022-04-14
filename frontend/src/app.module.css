@@ -1,0 +1,11 @@
+.leftMenu {
+  background-color: silver;
+
+  padding-bottom: 5px;
+}
+
+@media (min-width: 576px) {
+  .leftMenu {
+    min-height: calc(100vh - 60px);
+  }
+}
