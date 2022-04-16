@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Task from "./task";
 import Accordion from "react-bootstrap/Accordion";
 import LoadingPlaceholder from "./loading-placeholder";
+import config from "../config";
 
 export default function TaskList() {
   const [tasks, setTasks] = useState({ today: [], thisWeek: [], later: [] });
@@ -14,7 +15,7 @@ export default function TaskList() {
   let fetchData = () => {
     setLoading(true);
     console.log("Fetching...");
-    fetch("http://" + window.location.hostname + ":3000/task/list")
+    fetch("http://" + window.location.hostname + ":"+config.port+"/api/task/list")
       .then((res) => res.json())
       .then((json) => {
         let today = [];
@@ -65,7 +66,7 @@ export default function TaskList() {
       body: JSON.stringify({ _id: task._id }),
     };
     fetch(
-      "http://" + window.location.hostname + ":3000/task/delete",
+      "http://" + window.location.hostname + ":"+config.port+"/api/task/delete",
       requestOptions
     )
       .then((res) => res.json())

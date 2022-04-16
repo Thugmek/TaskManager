@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import config from "./config";
 
 export default function NewTask() {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ export default function NewTask() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     };
-    fetch("http://"+window.location.hostname+":3000/task/create", requestOptions).then((res) => {
+    fetch("http://"+window.location.hostname+":"+config.port+"/api/task/create", requestOptions).then((res) => {
       navigate("/tasks");
     });
   }

@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import config from "./config";
 
 export default function EditTask() {
   const [name, setName] = useState("");
@@ -23,7 +24,7 @@ export default function EditTask() {
       body: JSON.stringify({ _id: params.id }),
     };
     fetch(
-      "http://" + window.location.hostname + ":3000/task/get",
+      "http://" + window.location.hostname + ":"+config.port+"/api/task/get",
       requestOptions
     )
       .then((res) => res.json())
@@ -45,7 +46,7 @@ export default function EditTask() {
       body: JSON.stringify(payload),
     };
     fetch(
-      "http://" + window.location.hostname + ":3000/task/update",
+      "http://" + window.location.hostname + ":"+config.port+"/api/task/update",
       requestOptions
     ).then((res) => {
       navigate("/tasks");

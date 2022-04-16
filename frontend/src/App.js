@@ -28,7 +28,7 @@ function App() {
                 style={{ height: "60px" }}
               >
                 <Navbar.Text>
-                  <MdPerson /> Header
+                  <MdPerson /> Agitator
                 </Navbar.Text>
               </Navbar>
             </Col>
