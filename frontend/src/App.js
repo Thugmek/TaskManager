@@ -12,7 +12,10 @@ import NewTask from "./new-task";
 import EditTask from "./edit-task";
 import style from "./app.module.css";
 import DayPlan from "./day-plan";
-import { MdPerson } from "react-icons/md";
+import { MdSchedule } from "react-icons/md";
+import DayPlanEditor from "./day-plan-editor";
+import DayTemplateList from "./day-template-list";
+import DayTemplateEditor from "./day-template-editor";
 
 function App() {
   return (
@@ -27,8 +30,11 @@ function App() {
                 variant="dark"
                 style={{ height: "60px" }}
               >
-                <Navbar.Text>
-                  <MdPerson /> Agitator
+                <Navbar.Text className="d-flex justify-items-center">
+                  <div>
+                    <MdSchedule size={50} />
+                    Regentina Web
+                  </div>
                 </Navbar.Text>
               </Navbar>
             </Col>
@@ -44,7 +50,18 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/newTask" element={<NewTask />} />
                 <Route path="/calendar" element={<DayPlan />} />
+                <Route path="/calendar/:id" element={<DayPlan />} />
                 <Route path="/editTask/:id" element={<EditTask />} />
+                <Route path="/editDay/:id" element={<DayPlanEditor />} />
+                <Route path="/DayTemplates" element={<DayTemplateList />} />
+                <Route
+                  path="/newTemplate"
+                  element={<DayTemplateEditor isNew={true} />}
+                />
+                <Route
+                  path="/editTemplate/:id"
+                  element={<DayTemplateEditor />}
+                />
               </Routes>
             </Col>
           </Row>

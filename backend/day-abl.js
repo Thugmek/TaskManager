@@ -203,29 +203,6 @@ class DayABL {
       res.send(valRes.msg);
     }
   }
-
-  get(req, res) {
-    console.log("Get task", req.body);
-    let querry = {
-      _id: new this.mongo.ObjectId(req.body._id),
-    };
-    this.database.get("tasks", querry, (a) => {
-      res.send(a);
-      console.log("Database get result: ", a);
-    });
-  }
-
-  delete(req, res) {
-    console.log(req.body);
-    console.log(req.body._id);
-    let querry = {
-      _id: new this.mongo.ObjectId(req.body._id),
-    };
-    this.database.delete("tasks", querry, (a) => {
-      res.send(a);
-      console.log(a);
-    });
-  }
 }
 
 module.exports = DayABL; // Export class

@@ -17,9 +17,6 @@ export default function DayPlanSection(props) {
     dateTo.setHours(timeTo[0]);
     dateTo.setMinutes(timeTo[1]);
 
-    console.log("date from", dateFrom);
-    console.log("date to", dateTo);
-
     if (
       dateFrom.getTime() <= dateNow.getTime() &&
       dateTo.getTime() > dateNow.getTime()
@@ -38,7 +35,7 @@ export default function DayPlanSection(props) {
             <Col>{props.data.to}</Col>
           </Col>
           <Col>
-            <h5>{props.data.text}</h5>
+            <h5>{props.data.name}</h5>
           </Col>
         </Row>
       </Card.Body>
